@@ -27,4 +27,9 @@ public class PirateController {
     public Pirate createPirate(@RequestBody Pirate pirate) {
         return pirateRepository.save(pirate);
     }
+
+    @DeleteMapping(value = "/pirates/{id}")
+    public void deletePirate(@PathVariable Long id) {
+        pirateRepository.deleteById(id);
+    }
 }
