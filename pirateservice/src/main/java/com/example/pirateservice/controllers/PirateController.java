@@ -32,4 +32,17 @@ public class PirateController {
     public void deletePirate(@PathVariable Long id) {
         pirateRepository.deleteById(id);
     }
+
+    @PutMapping(value = "/pirates/{id}")
+    public Pirate replacePirate(@PathVariable Long id, @RequestBody Pirate newPirate) {
+        return pirateRepository.findById(id).map((pirate) -> {
+            pirate.setAge(newPirate.getAge());
+            pirate.setFirstName(newPirate.getFirstName());
+            pirate.setLastName(newPirate.getLastName());
+            return pirateRepository.save(pirate);
+        }).orElseGet(() -> {
+            newPirate.setId(id);
+            return pirateRepository.save(newPirate);
+        });
+    }
 }
