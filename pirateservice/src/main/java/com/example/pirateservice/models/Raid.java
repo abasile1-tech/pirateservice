@@ -6,6 +6,9 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 @Entity
 @Table(name = "raids")
 public class Raid {
@@ -18,6 +21,7 @@ public class Raid {
     private int loot;
     @ManyToMany
     @JsonIgnoreProperties({"raids"})
+    @Cascade(CascadeType.SAVE_UPDATE)
     @JoinTable(
             name = "pirate_raids",
             joinColumns = {
