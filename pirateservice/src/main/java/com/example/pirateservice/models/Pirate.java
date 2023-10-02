@@ -11,15 +11,19 @@ public class Pirate {
     private String lastName;
     @Column(name = "age")
     private int age;
+    @ManyToOne
+    @JoinColumn(name = "ship_id", nullable = false)
+    private Ship ship;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    public Pirate(String firstName, String lastName, int age) {
+    public Pirate(String firstName, String lastName, int age, Ship ship) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
+        this.ship = ship;
     }
 
     public Pirate() {}
@@ -54,5 +58,13 @@ public class Pirate {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Ship getShip() {
+        return ship;
+    }
+
+    public void setShip(Ship ship) {
+        this.ship = ship;
     }
 }
