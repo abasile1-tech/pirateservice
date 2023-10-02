@@ -3,6 +3,7 @@ package com.example.pirateservice.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -33,12 +34,12 @@ public class Raid {
                     )
             }
     )
-    @JsonIgnoreProperties({"pirates"})
     private List<Pirate> pirates;
 
     public Raid(String location, int loot) {
         this.location = location;
         this.loot = loot;
+        this.pirates = new ArrayList<>();
     }
 
     public Raid() {
@@ -66,5 +67,13 @@ public class Raid {
 
     public void setLoot(int loot) {
         this.loot = loot;
+    }
+
+    public List<Pirate> getPirates() {
+        return pirates;
+    }
+
+    public void setPirates(List<Pirate> pirates) {
+        this.pirates = pirates;
     }
 }
