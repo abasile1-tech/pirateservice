@@ -25,6 +25,7 @@ public class Pirate {
     private Long id;
 
     @ManyToMany
+    @JsonIgnoreProperties({"pirates"})
     @JoinTable(
             name = "pirate_raids",
             joinColumns = {
@@ -100,5 +101,9 @@ public class Pirate {
 
     public void setRaids(List<Raid> raids) {
         this.raids = raids;
+    }
+
+    public void addRaid(Raid raid) {
+        this.raids.add(raid);
     }
 }
