@@ -1,5 +1,7 @@
 package com.example.pirateservice.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 
 @Entity
@@ -13,6 +15,7 @@ public class Pirate {
     private int age;
     @ManyToOne
     @JoinColumn(name = "ship_id", nullable = false)
+    @JsonIgnoreProperties({"pirates"})
     private Ship ship;
 
     @Id
