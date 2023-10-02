@@ -1,5 +1,6 @@
 package com.example.pirateservice.controllers;
 
+import com.example.pirateservice.models.Pirate;
 import com.example.pirateservice.models.Ship;
 import com.example.pirateservice.repositories.ShipRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +26,8 @@ public class ShipController {
     }
 
     @PostMapping(value = "/ships")
-    public Ship createShip(@RequestBody Ship ship) {
-        return shipRepository.save(ship);
+    public ResponseEntity<Ship> createShip(@RequestBody Ship ship) {
+        return new ResponseEntity<>(shipRepository.save(ship), HttpStatus.CREATED);
     }
 
     @DeleteMapping(value = "/ships/{id}")

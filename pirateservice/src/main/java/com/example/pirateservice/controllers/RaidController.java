@@ -1,5 +1,6 @@
 package com.example.pirateservice.controllers;
 
+import com.example.pirateservice.models.Pirate;
 import com.example.pirateservice.models.Raid;
 import com.example.pirateservice.repositories.RaidRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +26,8 @@ public class RaidController {
     }
 
     @PostMapping(value = "/raids")
-    public Raid createRaid(@RequestBody Raid raid) {
-        return raidRepository.save(raid);
+    public ResponseEntity<Raid> createRaid(@RequestBody Raid raid) {
+        return new ResponseEntity<>(raidRepository.save(raid), HttpStatus.CREATED);
     }
 
     @DeleteMapping(value = "/raids/{id}")

@@ -26,8 +26,8 @@ public class PirateController {
     }
 
     @PostMapping(value = "/pirates")
-    public Pirate createPirate(@RequestBody Pirate pirate) {
-        return pirateRepository.save(pirate);
+    public ResponseEntity<Pirate> createPirate(@RequestBody Pirate pirate) {
+        return new ResponseEntity<>(pirateRepository.save(pirate), HttpStatus.CREATED);
     }
 
     @DeleteMapping(value = "/pirates/{id}")
